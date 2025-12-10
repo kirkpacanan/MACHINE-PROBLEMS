@@ -37,8 +37,8 @@ class MachineProblems {
   }
 
   static handleCountCharacters() {
-    const trimmed = MachineProblems.text('mp4-input').trim();
-    MachineProblems.setResult('mp4-result', trimmed.length.toString());
+    const cleaned = MachineProblems.text('mp4-input').trim().replace(/\s+/g, '');
+    MachineProblems.setResult('mp4-result', cleaned.length.toString());
   }
 
   static handleEmailCheck() {
