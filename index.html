@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machine Problems (M1-FA3)</title>
+  <style>
+    :root {
+      --bg: #0c1018;
+      --panel: rgba(255, 255, 255, 0.04);
+      --panel-border: rgba(255, 255, 255, 0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --primary: #7c3aed;
+      --primary-2: #06b6d4;
+      --glow: rgba(124, 58, 237, 0.25);
+      --accent: #22d3ee;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0 16px 48px;
+      line-height: 1.6;
+      color: var(--text);
+      background: radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.25) 0, transparent 35%), radial-gradient(circle at 80% 0%, rgba(6, 182, 212, 0.25) 0, transparent 32%), linear-gradient(145deg, #0c1018 0%, #0f172a 50%, #0b1220 100%);
+      min-height: 100vh;
+    }
+    .page {
+      max-width: 1100px;
+      margin: 36px auto;
+    }
+    header { text-align: center; margin-bottom: 22px; }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .subtitle { color: var(--muted); margin: 0; }
+    .modules { display: flex; flex-direction: column; gap: 16px; }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 20px var(--glow);
+      backdrop-filter: blur(10px);
+    }
+    h2 { margin: 0 0 4px; font-size: 18px; color: #f3f4f6; }
+    p { margin: 0 0 10px; color: var(--muted); }
+    .field { display: flex; flex-direction: column; gap: 6px; margin: 10px 0; }
+    label { font-weight: 600; color: #e5e7eb; letter-spacing: 0.01em; }
+    input {
+      padding: 10px 12px;
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #f8fafc;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      font-size: 15px;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18), 0 0 18px rgba(124, 58, 237, 0.35);
+    }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+    button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      box-shadow: 0 10px 28px rgba(124, 58, 237, 0.35), 0 0 15px rgba(6, 182, 212, 0.35);
+    }
+    button:hover { transform: translateY(-1px) scale(1.01); box-shadow: 0 14px 32px rgba(124, 58, 237, 0.38), 0 0 22px rgba(6, 182, 212, 0.4); }
+    button:active { transform: translateY(0) scale(0.99); box-shadow: 0 10px 22px rgba(124, 58, 237, 0.32); }
+    .result {
+      margin-top: 8px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
+      border: 1px solid var(--panel-border);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+    }
+    small { color: var(--muted); display: block; margin-top: 6px; }
+  </style>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Machine Problems</h1>
+    </header>
+    <div class="modules">
+    <section id="mp1">
+      <h2>Machine Problem 1: ReplaceAll</h2>
+      <p>Replace all spaces with no space.</p>
+      <div class="field">
+        <label for="mp1-input">Input</label>
+        <input id="mp1-input" type="text" placeholder="e.g., ba l am an">
+      </div>
+      <div class="actions">
+        <button onclick="handleReplaceAll()">Replace</button>
+      </div>
+      <div class="result" id="mp1-result">Result appears here</div>
+      <small>Hint: use <code>trim()</code> and <code>replaceAll()</code>.</small>
+    </section>
+
+    <section id="mp2">
+      <h2>Machine Problem 2: SearchWord</h2>
+      <p>Check if a word exists in the given sentence.</p>
+      <div class="field">
+        <label for="mp2-sentence">Sentence</label>
+        <input id="mp2-sentence" type="text" placeholder="e.g., JavaScript is easy">
+      </div>
+      <div class="field">
+        <label for="mp2-word">Word to search</label>
+        <input id="mp2-word" type="text" placeholder="e.g., easy">
+      </div>
+      <div class="actions">
+        <button onclick="handleSearchWord()">Search</button>
+      </div>
+      <div class="result" id="mp2-result">Result appears here</div>
+      <small>Hint: use <code>includes()</code> on the trimmed sentence.</small>
+    </section>
+
+    <section id="mp3">
+      <h2>Machine Problem 3: ReplaceWord</h2>
+      <p>Replace the first occurrence of a word in a sentence.</p>
+      <div class="field">
+        <label for="mp3-sentence">Sentence</label>
+        <input id="mp3-sentence" type="text" placeholder="e.g., I love PHP">
+      </div>
+      <div class="field">
+        <label for="mp3-find">Word to replace</label>
+        <input id="mp3-find" type="text" placeholder="e.g., PHP">
+      </div>
+      <div class="field">
+        <label for="mp3-replace">Replacement</label>
+        <input id="mp3-replace" type="text" placeholder="e.g., JavaScript">
+      </div>
+      <div class="actions">
+        <button onclick="handleReplaceWord()">Replace</button>
+      </div>
+      <div class="result" id="mp3-result">Result appears here</div>
+      <small>Hint: use <code>replace()</code> for the first occurrence.</small>
+    </section>
+
+    <section id="mp4">
+      <h2>Machine Problem 4: CountCharacters</h2>
+      <p>Count characters excluding leading/trailing spaces.</p>
+      <div class="field">
+        <label for="mp4-input">Input</label>
+        <input id="mp4-input" type="text" placeholder="e.g., Hello World">
+      </div>
+      <div class="actions">
+        <button onclick="handleCountCharacters()">Count</button>
+      </div>
+      <div class="result" id="mp4-result">Result appears here</div>
+      <small>Hint: <code>trim().length</code>.</small>
+    </section>
+
+    <section id="mp5">
+      <h2>Machine Problem 5: EmailCheck</h2>
+      <p>Check if the input is a valid email (must contain @).</p>
+      <div class="field">
+        <label for="mp5-input">Email</label>
+        <input id="mp5-input" type="email" placeholder="e.g., student@email.com">
+      </div>
+      <div class="actions">
+        <button onclick="handleEmailCheck()">Validate</button>
+      </div>
+      <div class="result" id="mp5-result">Result appears here</div>
+      <small>Hint: use <code>includes("@")</code>.</small>
+    </section>
+    </div>
+  </div>
+</body>
+</html>
+
